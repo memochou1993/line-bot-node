@@ -1,8 +1,6 @@
 const https = require('https');
 const express = require('express');
 
-const TOKEN = process.env.LINE_ACCESS_TOKEN;
-
 const app = express();
 
 app.use(express.json());
@@ -18,7 +16,7 @@ app.post('/api/webhook', (req, res) => {
   if (req.body.events[0].type === 'message') {
     const headers = {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${TOKEN}`,
+      Authorization: `Bearer ${process.env.LINE_ACCESS_TOKEN}`,
     };
 
     const body = JSON.stringify({
@@ -26,11 +24,7 @@ app.post('/api/webhook', (req, res) => {
       messages: [
         {
           type: 'text',
-          text: 'Hello, user',
-        },
-        {
-          type: 'text',
-          text: 'May I help you?',
+          text: 'Hello',
         },
       ],
     });
