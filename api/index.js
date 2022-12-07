@@ -6,6 +6,10 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.get('/', (req, res) => {
+  res.sendStatus(200);
+});
+
 app.get('/api', (req, res) => {
   res.sendStatus(200);
 });
@@ -53,4 +57,4 @@ app.post('/api/webhook', (req, res) => {
   }
 });
 
-module.exports = app;
+app.listen(80);
