@@ -17,6 +17,8 @@ app.get('/api', (req, res) => {
 app.post('/api/webhook', (req, res) => {
   res.send('HTTP POST request sent to the webhook URL!');
 
+  console.log(req.body.events);
+
   if (req.body.events[0].type === 'message') {
     const headers = {
       'Content-Type': 'application/json',
