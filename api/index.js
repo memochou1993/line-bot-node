@@ -24,7 +24,7 @@ app.post('/api/webhook', (req, res) => {
       messages: [
         {
           type: 'text',
-          text: 'Hello',
+          text: `${req.body.events[0].message.text} (${(new Date()).toLocaleTimeString('en-US', { hour12: false })})`,
         },
       ],
     });
