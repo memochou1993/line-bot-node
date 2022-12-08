@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "start": "node index.mjs"
+    "start": "node api/index.mjs"
   },
   "dependencies": {
     "axios": "^1.2.1",

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const instance = axios.create({
   baseURL: 'https://api.line.me',
-  timeout: 1000,
+  timeout: 10000,
   headers: {
     Authorization: `Bearer ${process.env.LINE_ACCESS_TOKEN}`,
   },

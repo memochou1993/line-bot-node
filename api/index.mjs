@@ -9,13 +9,10 @@ app.get('/', (req, res) => {
   res.sendStatus(200);
 });
 
-app.post('/webhook', (req, res) => {
-  res.sendStatus(200);
-
-  (req.body.events || [])
-    .filter(({ type }) => type === 'message')
-    .forEach(({ replyToken, message }) => {
-      reply({
+app.post('/webhook', async (req, res) => {
+  for (const { type, replyToken, message } of (req.body.events || [])) {
+    if (type === 'message') {
+      await reply({
         replyToken,
         messages: [
           {
@@ -23,8 +20,10 @@ app.post('/webhook', (req, res) => {
             text: message.text,
           },
         ],
-      });
-    });
+      })
+    }
+  }
+  res.sendStatus(200);
 });
 
-app.listen(80);
+export default app;
