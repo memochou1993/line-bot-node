@@ -22,7 +22,7 @@ app.post('/webhook', async (req, res) => {
             text: message.text,
           },
         ],
-      })
+      });
     }
   }
   res.sendStatus(200);

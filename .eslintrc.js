@@ -11,5 +11,7 @@ module.exports = {
     ecmaVersion: 'latest',
   },
   rules: {
+    'no-restricted-syntax': 'off',
+    'no-await-in-loop': 'off',
   },
 };
