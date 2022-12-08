@@ -10,7 +10,9 @@ app.get('/', (req, res) => {
 });
 
 app.post('/webhook', async (req, res) => {
-  for (const { type, replyToken, message } of (req.body.events || [])) {
+  const events = req.body.events || [];
+  for (const event of events) {
+    const { type, replyToken, message } = event;
     if (type === 'message') {
       await reply({
         replyToken,
