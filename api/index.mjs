@@ -11,20 +11,18 @@ app.get('/', (req, res) => {
 
 app.post('/webhook', async (req, res) => {
   const events = req.body.events || [];
-  for (const event of events) {
-    const { type, replyToken, message } = event;
-    if (type === 'message') {
-      await reply({
-        replyToken,
-        messages: [
-          {
-            type: 'text',
-            text: message.text,
-          },
-        ],
-      });
-    }
-  }
+  const replies = events
+    .filter(({ type }) => type === 'message')
+    .map(({ replyToken, message }) => reply({
+      replyToken,
+      messages: [
+        {
+          type: 'text',
+          text: message.text,
+        },
+      ],
+    }));
+  await Promise.all(replies);
   res.sendStatus(200);
 });
 
