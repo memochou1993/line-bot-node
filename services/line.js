@@ -2,9 +2,9 @@ import axios from 'axios';
 
 const instance = axios.create({
   baseURL: 'https://api.line.me',
-  timeout: 10000,
+  timeout: 9000,
   headers: {
-    Authorization: `Bearer ${process.env.LINE_ACCESS_TOKEN}`,
+    Authorization: `Bearer ${process.env.LINE_CHANNEL_ACCESS_TOKEN}`,
   },
 });
 
@@ -14,12 +14,16 @@ const instance = axios.create({
  * @param {string} messages[].type
  * @param {string} messages[].text
  */
-export const reply = ({
+const reply = ({
   replyToken,
   messages,
 }) => instance.post('/v2/bot/message/reply', {
   replyToken,
   messages,
 });
+
+export {
+  reply,
+};
 
 export default null;
