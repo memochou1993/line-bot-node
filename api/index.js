@@ -15,12 +15,7 @@ app.post('/webhook', async (req, res) => {
     .filter(({ type }) => type === 'message')
     .map(({ replyToken, message }) => reply({
       replyToken,
-      messages: [
-        {
-          type: 'text',
-          text: message.text,
-        },
-      ],
+      messages: [{ type: 'text', text: message.text }],
     }));
   await Promise.all(replies);
   res.sendStatus(200);
